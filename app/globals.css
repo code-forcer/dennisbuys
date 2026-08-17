@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ─── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fff;
+  color: #261606;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ─── Layout Utilities ────────────────────────────────────────────────────── */
+
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .site-container { padding: 0 40px; }
+}
+@media (min-width: 1024px) {
+  .site-container { padding: 0 60px; }
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatGlow {
+  0%, 100% { transform: translateY(0) scale(1);    opacity: 0.2; }
+  50%       { transform: translateY(-18px) scale(1.06); opacity: 0.35; }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  70%  { transform: scale(1.55); opacity: 0;   }
+  100% { transform: scale(1.55); opacity: 0;   }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes heroBgFade {
+  0%   { opacity: 1; }
+  45%  { opacity: 1; }
+  55%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes revealFallback {
+  to { opacity: 1; transform: none; }
+}
+
+/* ─── Scroll Reveal ───────────────────────────────────────────────────────── */
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: revealFallback 0.01ms 2s forwards;
+}
+.reveal-hidden.revealed { opacity: 1; transform: translateY(0); animation: none; }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: revealFallback 0.01ms 2s forwards;
+}
+.reveal-left.revealed { opacity: 1; transform: translateX(0); animation: none; }
+
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.15s; }
+.stagger-3 { transition-delay: 0.25s; }
+.stagger-4 { transition-delay: 0.35s; }
+.stagger-5 { transition-delay: 0.45s; }
+
+/* ─── Header Glassmorphism ────────────────────────────────────────────────── */
+
+.glass-header {
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgb(0, 0, 0) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  animation: fadeSlideDown 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+/* ─── Hero Entrance ───────────────────────────────────────────────────────── */
+
+.hero-eyebrow  { animation: fadeSlideUp 0.7s 0.1s  cubic-bezier(0.22,1,0.36,1) both; }
+.hero-heading  { animation: fadeSlideUp 0.75s 0.25s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-body     { animation: fadeSlideUp 0.75s 0.40s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-buttons  { animation: fadeSlideUp 0.75s 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-badges   { animation: fadeSlideUp 0.75s 0.70s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-glow     { animation: floatGlow 6s ease-in-out infinite; }
+
+/* ─── Hero BG Slideshow ───────────────────────────────────────────────────── */
+
+.hero-bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.hero-bg-slide.active { opacity: 1; }
+
+.hero-skyline-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .hero-skyline-svg {
+    height: 70%;
+  }
+}
+
+/* ─── Hero Buttons (pure CSS — no Chakra responsive props needed) ─────────── */
+
+.hero-btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary,
+.hero-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+  min-width: 180px;
+  flex: 1;
+}
+
+.hero-btn-primary {
+  background: #9a0002;
+  color: white;
+  border: 2px solid transparent;
+}
+.hero-btn-primary:hover {
+  background: #c2151a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(154,0,2,0.4);
+}
+
+.hero-btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.45);
+}
+.hero-btn-outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+}
+
+/* Mobile: stack buttons full width */
+@media (max-width: 540px) {
+  .hero-btn-row { flex-direction: column; }
+  .hero-btn-primary,
+  .hero-btn-outline { min-width: 0; width: 100%; flex: none; }
+}
+
+/* ─── Section layouts (CSS Grid — reliable across all browsers) ───────────── */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 1024px) {
+  .two-col { grid-template-columns: 1fr 1fr; gap: 80px; }
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .three-col { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .form-layout { grid-template-columns: 1fr 380px; gap: 60px; }
+}
+
+/* ─── Section padding ─────────────────────────────────────────────────────── */
+
+.section-py {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+@media (min-width: 768px) {
+  .section-py { padding-top: 88px; padding-bottom: 88px; }
+}
+@media (min-width: 1024px) {
+  .section-py { padding-top: 112px; padding-bottom: 112px; }
+}
+
+/* ─── Process Card ────────────────────────────────────────────────────────── */
+
+.process-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.process-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px rgba(211,240,10,0.18), 0 8px 32px rgba(0,0,0,0.25);
+  border-color: rgba(211,240,10,0.35) !important;
+}
+
+.pulse-circle { position: relative; }
+.pulse-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(211,240,10,0.55);
+  animation: pulseRing 2.8s cubic-bezier(0.215,0.61,0.355,1) infinite;
+}
+
+/* ─── WhySell rows ────────────────────────────────────────────────────────── */
+
+.reason-row {
+  transition: padding-left 0.3s cubic-bezier(0.22,1,0.36,1), background 0.2s ease;
+  border-radius: 0 8px 8px 0;
+}
+.reason-row:hover { padding-left: 10px; background: rgba(0,0,0,0.018); }
+
+/* ─── Animated underline link ─────────────────────────────────────────────── */
+
+.animated-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.animated-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 2px;
+  background: #9a0002;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.animated-link:hover::after { transform: scaleX(1); }
+
+/* ─── Shimmer text ────────────────────────────────────────────────────────── */
+
+.shimmer-text {
+  background: linear-gradient(120deg, #fff 30%, #ffd4d4 50%, #fff 70%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ─── FinalCta gradient ───────────────────────────────────────────────────── */
+
+.gradient-cta-bg {
+  background: linear-gradient(135deg, #9a0002 0%, #780002 35%, #5c0001 60%, #9a0002 85%, #c2151a 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* ─── CTA buttons (non-hero) ──────────────────────────────────────────────── */
+
+.cta-btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  background: white;
+  color: #9a0002;
+  border: none;
+  width: 100%;
+  transition: transform 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cta-btn-white:hover { background: #f0e6dd; transform: scale(1.025); }
+
+.cta-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+  width: 100%;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cta-btn-ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+  transform: scale(1.02);
+}
+
+.cta-btn-row {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  max-width: 440px;
+  margin: 0 auto;
+}
+@media (min-width: 540px) {
+  .cta-btn-row { flex-direction: row; }
+}
+
+/* ─── Form card ───────────────────────────────────────────────────────────── */
+
+.form-card { transition: box-shadow 0.3s ease; }
+.form-card:hover { box-shadow: 0 4px 48px rgba(38,22,6,0.12) !important; }
+
+/* ─── Form submit button ──────────────────────────────────────────────────── */
+
+.form-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 56px;
+  background: #9a0002;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.form-submit-btn:hover:not(:disabled) {
+  background: #c2151a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(154,0,2,0.35);
+}
+.form-submit-btn:disabled { opacity: 0.65; cursor: wait; }
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-hidden, .reveal-left { opacity: 1 !important; transform: none !important; }
+}
