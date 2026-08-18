@@ -21,7 +21,7 @@ export function DirectContact() {
 
             {/* Left */}
             <div ref={ref} className="reveal-hidden">
-              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9a0002", marginBottom: "12px" }}>
+              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b2c5c", marginBottom: "12px" }}>
                 A Real Local Person
               </p>
               <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 50px)", marginBottom: "20px", lineHeight: 1.08, color: "#261606" }}>

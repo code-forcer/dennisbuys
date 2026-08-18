@@ -82,7 +82,7 @@ export function SellerForm() {
 
   const focusStyle = (field: string): React.CSSProperties =>
     focused === field
-      ? { ...INPUT_STYLE, borderColor: "#9a0002", boxShadow: "0 0 0 3px rgba(154,0,2,0.12)" }
+      ? { ...INPUT_STYLE, borderColor: "#0b2c5c", boxShadow: "0 0 0 3px rgba(11,44,92,0.12)" }
       : INPUT_STYLE;
 
   if (status === "success") {
@@ -121,8 +121,8 @@ export function SellerForm() {
               style={{ background: "white", borderRadius: "20px", padding: "clamp(24px, 4vw, 44px)", boxShadow: "0 0px 24px rgba(38,22,6,0.07)" }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", color: "#fff", backgroundColor: "#902", padding: "8px 16px", borderRadius: "50px" }}>01</span>
-                <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", color: "#9a0002" }}>START HERE</span>
+                <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", color: "#fff", backgroundColor: "#0b2c5c", padding: "8px 16px", borderRadius: "50px" }}>01</span>
+                <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", color: "#0b2c5c" }}>START HERE</span>
               </div>
               <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(22px, 3vw, 30px)", marginBottom: "8px", color: "#261606" }}>
                 Tell me about your house
@@ -206,8 +206,8 @@ export function SellerForm() {
                   </div>
 
                   {status === "error" && (
-                    <div style={{ background: "rgba(154,0,2,0.07)", border: "1px solid #c2151a", borderRadius: "10px", padding: "12px 16px" }}>
-                      <p style={{ color: "#9a0002", fontSize: "13px", fontWeight: 500 }}>{errorMsg}</p>
+                    <div style={{ background: "rgba(11,44,92,0.07)", border: "1px solid #15478c", borderRadius: "10px", padding: "12px 16px" }}>
+                      <p style={{ color: "#0b2c5c", fontSize: "13px", fontWeight: 500 }}>{errorMsg}</p>
                     </div>
                   )}
 
@@ -247,7 +247,7 @@ export function SellerForm() {
 
             {/* ── Sidebar ────────────────────────────────────────── */}
             <div className="form-sidebar" style={{ paddingTop: "8px" }}>
-              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9a0002", marginBottom: "24px" }}>
+              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b2c5c", marginBottom: "24px" }}>
                 What you get
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "28px", marginBottom: "40px" }}>

@@ -17,11 +17,11 @@ const config = defineConfig({
           500: { value: "#efe6dd" },
           600: { value: "#e2d5c6" },
         },
-        cherry: {
-          400: { value: "#c2151a" },
-          500: { value: "#9a0002" },
-          600: { value: "#780002" },
-          700: { value: "#5c0001" },
+        navy: {
+          400: { value: "#15478c" },
+          500: { value: "#0b2c5c" },
+          600: { value: "#061a3b" },
+          700: { value: "#020b1c" },
         },
         aureolin: {
           500: { value: "#fbe311" },
@@ -46,10 +46,10 @@ const config = defineConfig({
     },
     semanticTokens: {
       colors: {
-        "brand.solid": { value: "{colors.cherry.500}" },
+        "brand.solid": { value: "{colors.navy.500}" },
         "brand.contrast": { value: "white" },
-        "brand.fg": { value: "{colors.cherry.500}" },
-        "brand.muted": { value: "{colors.cherry.400}" },
+        "brand.fg": { value: "{colors.navy.500}" },
+        "brand.muted": { value: "{colors.navy.400}" },
       },
     },
   },

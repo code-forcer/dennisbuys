@@ -34,7 +34,7 @@ export function Hero() {
           width: "480px",
           height: "480px",
           borderRadius: "50%",
-          background: "#9a0002",
+          background: "#0b2c5c",
           filter: "blur(120px)",
           zIndex: 1,
           pointerEvents: "none",

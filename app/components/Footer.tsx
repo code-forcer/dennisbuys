@@ -16,7 +16,7 @@ export function Footer() {
 
               {/* Brand */}
               <div className="footer-brand">
-                <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "#9a0002", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px", flexShrink: 0 }}>
+                <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "#0b2c5c", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px", flexShrink: 0 }}>
                   {site.ownerFirstName.charAt(0)}
                 </div>
                 <div style={{ lineHeight: 1.2 }}>

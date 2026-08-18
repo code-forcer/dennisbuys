@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 480px;">
-        <h2 style="color:#9a0002; margin-bottom: 4px;">New seller lead</h2>
+        <h2 style="color:#0b2c5c; margin-bottom: 4px;">New seller lead</h2>
         <p style="color:#555; margin-top:0;">From ${site.businessName}</p>
         <table style="width:100%; border-collapse: collapse; margin-top: 16px;">
           <tr><td style="padding:8px 0; font-weight:bold; width:140px;">Name</td><td style="padding:8px 0;">${escapeHtml(name)}</td></tr>
@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
           <tr><td style="padding:8px 0; font-weight:bold;">Situation</td><td style="padding:8px 0;">${escapeHtml(situation || "Not specified")}</td></tr>
         </table>
         <p style="margin-top:20px;">
-          <a href="tel:${site.phoneHref}" style="color:#9a0002;">Call</a> &nbsp;|&nbsp;
-          <a href="sms:${site.phoneHref}" style="color:#9a0002;">Text</a>
+          <a href="tel:${site.phoneHref}" style="color:#0b2c5c;">Call</a> &nbsp;|&nbsp;
+          <a href="sms:${site.phoneHref}" style="color:#0b2c5c;">Text</a>
         </p>
       </div>
     `;

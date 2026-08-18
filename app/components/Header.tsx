@@ -24,7 +24,7 @@ export function Header() {
         justify="space-between"
       >
         <HStack gap={3}>
-          <Circle size="34px" bg="cherry.500" color="white" fontWeight="700" fontFamily="heading">
+          <Circle size="34px" bg="navy.500" color="white" fontWeight="700" fontFamily="heading">
             {site.ownerFirstName.charAt(0)}
           </Circle>
           <Box lineHeight="1.1">
@@ -46,7 +46,7 @@ export function Header() {
           fontWeight="600"
           color="white"
           borderBottom="2px solid"
-          borderColor="cherry.500"
+          borderColor="navy.500"
           pb="1px"
         >
           <Icon as={FiPhone} boxSize={4} />
