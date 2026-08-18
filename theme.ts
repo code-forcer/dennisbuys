@@ -19,7 +19,7 @@ const config = defineConfig({
         },
         navy: {
           400: { value: "#15478c" },
-          500: { value: "#0b2c5c" },
+          500: { value: "#000080" },
           600: { value: "#061a3b" },
           700: { value: "#020b1c" },
         },

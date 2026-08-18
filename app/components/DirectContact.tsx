@@ -18,24 +18,54 @@ export function DirectContact() {
       <div className="section-py">
         <div className="site-container">
           <div className="two-col" style={{ alignItems: "center" }}>
-
             {/* Left */}
             <div ref={ref} className="reveal-hidden">
-              <p style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0b2c5c", marginBottom: "12px" }}>
+              <p
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "#000080",
+                  marginBottom: "12px",
+                }}
+              >
                 A Real Local Person
               </p>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px, 4vw, 50px)", marginBottom: "20px", lineHeight: 1.08, color: "#261606" }}>
+              <h2
+                style={{
+                  fontFamily: "'Fraunces', Georgia, serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(28px, 4vw, 50px)",
+                  marginBottom: "20px",
+                  lineHeight: 1.08,
+                  color: "#261606",
+                }}
+              >
                 Deal directly with {site.ownerFirstName}.
               </h2>
-              <p style={{ color: "#6b4f3a", fontSize: "clamp(14px, 1.8vw, 17px)", marginBottom: "28px", maxWidth: "44ch", lineHeight: 1.72 }}>
-                I&apos;m a local buyer focused on helping Las Vegas Valley homeowners find a
-                clean way forward. You&apos;ll get an honest conversation&mdash;not a call-center
-                runaround or pressure to say yes.
+              <p
+                style={{
+                  color: "#6b4f3a",
+                  fontSize: "clamp(14px, 1.8vw, 17px)",
+                  marginBottom: "28px",
+                  maxWidth: "44ch",
+                  lineHeight: 1.72,
+                }}
+              >
+                I&apos;m a local buyer focused on helping Las Vegas Valley
+                homeowners find a clean way forward. You&apos;ll get an honest
+                conversation&mdash;not a call-center runaround or pressure to
+                say yes.
               </p>
               <a
                 href={`tel:${site.phoneHref}`}
                 className="animated-link"
-                style={{ fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 17px)", color: "#261606" }}
+                style={{
+                  fontWeight: 700,
+                  fontSize: "clamp(14px, 1.8vw, 17px)",
+                  color: "#261606",
+                }}
               >
                 Call me at {site.phoneDisplay} <FiArrowRight />
               </a>
@@ -47,7 +77,6 @@ export function DirectContact() {
                 <TrustPoint key={p.label} point={p} index={i} />
               ))}
             </div>
-
           </div>
         </div>
       </div>
@@ -61,7 +90,13 @@ export function DirectContact() {
   );
 }
 
-function TrustPoint({ point, index }: { point: { label: string; desc: string }; index: number }) {
+function TrustPoint({
+  point,
+  index,
+}: {
+  point: { label: string; desc: string };
+  index: number;
+}) {
   const ref = useScrollReveal<HTMLDivElement>();
   return (
     <div
@@ -73,7 +108,16 @@ function TrustPoint({ point, index }: { point: { label: string; desc: string }; 
         borderTop: index === 0 ? "1px solid #d8ccc4" : undefined,
       }}
     >
-      <p style={{ fontWeight: 700, color: "#261606", fontSize: "17px", marginBottom: "4px" }}>{point.label}</p>
+      <p
+        style={{
+          fontWeight: 700,
+          color: "#261606",
+          fontSize: "17px",
+          marginBottom: "4px",
+        }}
+      >
+        {point.label}
+      </p>
       <p style={{ color: "#6b4f3a", fontSize: "14px" }}>{point.desc}</p>
     </div>
   );

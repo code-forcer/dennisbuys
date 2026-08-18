@@ -18,7 +18,12 @@ const BADGES = ["Buy as-is", "Pick your closing date", "No obligation"];
 export function Hero() {
   return (
     <section
-      style={{ position: "relative", overflow: "hidden", minHeight: "clamp(480px, 80vh, 640px)", backgroundColor: "#1a0f04" }}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        minHeight: "clamp(480px, 80vh, 640px)",
+        backgroundColor: "#1a0f04",
+      }}
     >
       {/* ── Illustrated Vegas dusk skyline (no external assets needed) ─── */}
       <HeroSkyline />
@@ -34,7 +39,7 @@ export function Hero() {
           width: "480px",
           height: "480px",
           borderRadius: "50%",
-          background: "#0b2c5c",
+          background: "#000080",
           filter: "blur(120px)",
           zIndex: 1,
           pointerEvents: "none",
@@ -90,7 +95,9 @@ export function Hero() {
               }}
             >
               Sell your house.{" "}
-              <span style={{ color: "#902", whiteSpace: "nowrap" }}>Skip <br /> The Headache.</span>
+              <span style={{ color: "#0ea4ff", whiteSpace: "nowrap" }}>
+                Skip <br /> The Headache.
+              </span>
             </h1>
 
             <p

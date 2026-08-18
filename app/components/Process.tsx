@@ -12,7 +12,7 @@ export function Process() {
   const headingRef = useScrollReveal<HTMLDivElement>();
 
   return (
-    <section style={{ background: "#261606", color: "white" }}>
+    <section style={{ background: "#000080", color: "white" }}>
       <div className="section-py">
         <div className="site-container">
           <div ref={headingRef} className="reveal-hidden" style={{ marginBottom: "48px" }}>

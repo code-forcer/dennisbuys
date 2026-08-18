@@ -13,11 +13,11 @@ export function HeroSkyline() {
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#1a0f04" />
           <stop offset="55%" stopColor="#261606" />
-          <stop offset="100%" stopColor="#3a1207" />
+          <stop offset="100%" stopColor="#0ea4ff" />
         </linearGradient>
         <linearGradient id="sunGlow" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#0b2c5c" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#0b2c5c" stopOpacity="0" />
+          <stop offset="0%" stopColor="#000080" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#000080" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#261606" stopOpacity="0" />
