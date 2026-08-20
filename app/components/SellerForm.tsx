@@ -89,17 +89,38 @@ export function SellerForm() {
     setStatus("submitting");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/lead", {
+      const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 480px;">
+          <h2 style="color:#000080; margin-bottom: 4px;">New seller lead</h2>
+          <p style="color:#555; margin-top:0;">From ${site.businessName}</p>
+          <table style="width:100%; border-collapse: collapse; margin-top: 16px;">
+            <tr><td style="padding:8px 0; font-weight:bold; width:140px;">Name</td><td style="padding:8px 0;">${name}</td></tr>
+            <tr><td style="padding:8px 0; font-weight:bold;">Phone</td><td style="padding:8px 0;">${phone}</td></tr>
+            <tr><td style="padding:8px 0; font-weight:bold;">Address</td><td style="padding:8px 0;">${address}</td></tr>
+            <tr><td style="padding:8px 0; font-weight:bold;">Situation</td><td style="padding:8px 0;">${situationLabel || "Not specified"}</td></tr>
+          </table>
+          <p style="margin-top:20px;">
+            <a href="tel:${site.phoneHref}" style="color:#000080;">Call</a> &nbsp;|&nbsp;
+            <a href="sms:${site.phoneHref}" style="color:#000080;">Text</a>
+          </p>
+        </div>
+      `;
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          name,
-          phone,
-          address,
-          situation: situationLabel || "Not specified",
+          access_key: "9f2e41bc-ee4e-473b-a499-2433f8df4403",
+          subject: `New lead: ${name} — ${address}`,
+          from_name: `${site.businessName} Website`,
+          name: name,
+          email: "noreply@dennisbuysvegas.com", 
+          message: html,
         }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      
+      const result = await res.json();
+      if (!result.success) throw new Error(result.message || "Request failed");
       setStatus("success");
     } catch {
       setStatus("error");
