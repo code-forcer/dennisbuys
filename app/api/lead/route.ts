@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import { site } from "@/site.config";
 
 export async function POST(req: NextRequest) {
@@ -13,12 +12,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.WEB3FORMS_ACCESS_KEY;
 
-    // If no email key is configured yet (e.g. local dev before setup),
-    // log the lead instead of failing the whole request.
     if (!apiKey) {
-      console.log("New lead (RESEND_API_KEY not set, email skipped):", {
+      console.log("New lead (WEB3FORMS_ACCESS_KEY not set, email skipped):", {
         name,
         phone,
         address,
@@ -26,8 +23,6 @@ export async function POST(req: NextRequest) {
       });
       return NextResponse.json({ ok: true, delivered: false });
     }
-
-    const resend = new Resend(apiKey);
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 480px;">
@@ -46,18 +41,28 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const domain = getSendingDomain();
-    const fromAddress = domain === "resend.dev"
-      ? "onboarding@resend.dev"
-      : `${site.businessName} Website <leads@${domain}>`;
-
-    await resend.emails.send({
-      from: fromAddress,
-      to: site.email,
-      replyTo: site.email,
-      subject: `New lead: ${name} — ${address}`,
-      html,
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: apiKey,
+        subject: `New lead: ${name} — ${address}`,
+        from_name: `${site.businessName} Website`,
+        name: name,
+        phone: phone,
+        address: address,
+        situation: situation || "Not specified",
+        message: html,
+      }),
     });
+
+    const result = await res.json();
+    if (!result.success) {
+      throw new Error(result.message || "Failed to send lead via Web3Forms.");
+    }
 
     return NextResponse.json({ ok: true, delivered: true });
   } catch (err) {
@@ -74,11 +79,4 @@ function escapeHtml(str: string) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
-}
-
-// Resend requires sending "from" a domain you've verified in their dashboard.
-// Set RESEND_FROM_DOMAIN once the site's real domain is verified there;
-// falls back to Resend's shared test domain otherwise.
-function getSendingDomain() {
-  return process.env.RESEND_FROM_DOMAIN || "resend.dev";
 }
