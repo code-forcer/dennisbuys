@@ -46,8 +46,13 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
+    const domain = getSendingDomain();
+    const fromAddress = domain === "resend.dev"
+      ? "onboarding@resend.dev"
+      : `${site.businessName} Website <leads@${domain}>`;
+
     await resend.emails.send({
-      from: `${site.businessName} Website <leads@${getSendingDomain()}>`,
+      from: fromAddress,
       to: site.email,
       replyTo: site.email,
       subject: `New lead: ${name} — ${address}`,
