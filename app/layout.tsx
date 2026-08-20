@@ -7,6 +7,29 @@ import { site } from "@/site.config";
 export const metadata: Metadata = {
   title: `${site.businessName} | Sell Your House Fast for Cash`,
   description: `Get a fair, no-obligation cash offer on your house in ${site.serviceArea}. No repairs, no cleaning, no commissions. Call or text ${site.phoneDisplay}.`,
+  metadataBase: new URL('https://www.dennisbuysvegas.com'),
+  openGraph: {
+    title: `${site.businessName} | Sell Your House Fast`,
+    description: `Get a fair, no-obligation cash offer on your house in ${site.serviceArea}. No repairs, no cleaning, no commissions.`,
+    url: 'https://www.dennisbuysvegas.com',
+    siteName: site.businessName,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Beautiful Las Vegas house',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${site.businessName}`,
+    description: `Get a fair, no-obligation cash offer on your house in ${site.serviceArea}.`,
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

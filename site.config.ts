@@ -6,7 +6,7 @@ export const site = {
   ownerFirstName: "Dennis",
   phoneDisplay: "(702) 827-5758",
   phoneHref: "+17028275758", // used for tel: and sms: links, digits only after +
-  email: "dennis@dennisbuysvegashouses.com",
+  email: "DennisMerrimanInvestments@gmail.com",
   serviceArea: "Las Vegas, Henderson & North Las Vegas",
   serviceCities: ["Las Vegas", "Henderson", "North Las Vegas"],
   year: new Date().getFullYear(),
